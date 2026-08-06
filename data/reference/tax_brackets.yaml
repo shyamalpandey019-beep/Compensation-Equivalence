@@ -1,0 +1,82 @@
+# Pinned tax bracket reference data.
+# Every country block carries: tax_year, currency, source URLs, retrieved_date.
+# Do NOT edit rates in place without bumping tax_year and retrieved_date.
+# Day 2 (tax calculator) consumes this file directly -- keep structure stable.
+
+india:
+  tax_year: "FY2025-26 (AY2026-27)"
+  regime: "new_regime_default"  # India lets filers choose old vs new; new is default since FY2023-24
+  currency: INR
+  retrieved_date: "2026-08-06"
+  sources:
+    - "https://www.indianpaycalculator.in/income-tax-slabs"
+    - "https://cleartax.in/c/income-tax-slab-rates"
+  standard_deduction_salaried: 75000
+  section_87a_rebate: 60000       # wipes out tax when net taxable income <= rebate_threshold
+  rebate_threshold_net_taxable: 1200000
+  slabs:
+    # [lower_bound, upper_bound_exclusive, marginal_rate] in INR. null upper = no cap.
+    - [0, 400000, 0.00]
+    - [400000, 800000, 0.05]
+    - [800000, 1200000, 0.10]
+    - [1200000, 1600000, 0.15]
+    - [1600000, 2000000, 0.20]
+    - [2000000, 2400000, 0.25]
+    - [2400000, null, 0.30]
+  cess: 0.04                       # health & education cess, applied on computed tax
+  surcharge_note: >
+    Surcharge applies above INR 50L income (10-25% of tax depending on tier,
+    capped at 25% under new regime). Not implemented Day 1 -- flagged for Day 2
+    if role/salary scope requires it.
+
+japan:
+  tax_year: "2025"
+  currency: JPY
+  retrieved_date: "2026-08-06"
+  sources:
+    - "https://www.salarytohourly.com/tax-brackets-japan"
+    - "https://www.oecd.org/en/publications/taxing-wages-2026_3a5169ef-en/full-report/japan_2a0a001e.html"
+  national_slabs:
+    # [lower_bound, upper_bound_exclusive, marginal_rate] in JPY
+    - [0, 1950000, 0.05]
+    - [1950000, 3300000, 0.10]
+    - [3300000, 6950000, 0.20]
+    - [6950000, 9000000, 0.23]
+    - [9000000, 18000000, 0.33]
+    - [18000000, 40000000, 0.40]
+    - [40000000, null, 0.45]
+  reconstruction_surtax: 0.021     # applied on top of computed national tax, not on income
+  resident_tax_flat_rate: 0.10     # local inhabitant tax, flat, separate from national tax
+  employment_income_deduction: >
+    UNRESOLVED FOR DAY 1: deduction is tiered by gross income (not a flat
+    amount), min JPY 650,000 rising to JPY 1,950,000 cap for income above
+    JPY 8.5M. Exact formula not pinned yet -- verify against NTA official
+    source before Day 2 calculator implementation.
+  basic_deduction_conflict: >
+    SOURCE CONFLICT, unresolved: one source states JPY 480,000 basic
+    deduction (income <= JPY 24M), another states JPY 950,000 as a
+    "temporary" 2025 rate reverting after 2027. Do not use either as fact
+    until cross-checked against NTA.go.jp directly. Blocking item for Day 2.
+  social_insurance_employee_approx: 0.15  # health + pension + employment, approx, employee share
+
+germany:
+  tax_year: "2025"
+  filing_status: "single"
+  currency: EUR
+  retrieved_date: "2026-08-06"
+  sources:
+    - "https://worldlycalc.com/income-tax-calculator-germany"
+    - "https://germanyhandbook.com/german-income-tax-brackets-how-much-will-you-pay/"
+  structure: "piecewise_formula"   # NOT flat-step brackets -- see zones below
+  zones:
+    # Zones 2 and 3 are smooth formulas under section 32a EStG, not flat rates.
+    # marginal_rate_range is the rate span at zone boundaries, for reference only.
+    # Day 2 must implement the actual formula or a validated approximation --
+    # do NOT treat these as flat-rate brackets.
+    - {lower_bound: 0, upper_bound: 12096, type: "flat", rate: 0.00}
+    - {lower_bound: 12096, upper_bound: 17443, type: "formula", marginal_rate_range: [0.14, 0.24]}
+    - {lower_bound: 17443, upper_bound: 68480, type: "formula", marginal_rate_range: [0.24, 0.42]}
+    - {lower_bound: 68480, upper_bound: 277825, type: "flat", rate: 0.42}
+    - {lower_bound: 277825, upper_bound: null, type: "flat", rate: 0.45}
+  solidarity_surcharge: 0.055      # of income tax; most filers exempt since 2021 -- exemption threshold not pinned
+  social_security_employee_approx: 0.20   # health + pension + unemployment + long-term care, approx employee share
