@@ -4,9 +4,9 @@ Cross-country compensation equivalence engine. Given a salary + role + country,
 outputs three **separate** adjusted figures — nominal FX, PPP-adjusted, and
 cost-of-living-adjusted — plus a transparent weighted ranking across countries.
 
-## Scope (locked for the 1-week build)
+## Scope
 
-- **Countries**: India (IN), Japan (JP), Germany (DE)
+- **Countries**: India (IN), Japan (JP), Germany (DE), United States (US)
 - **Roles**: data scientist / data engineer, 1 general benchmark tier
 - **No ML model** for scoring — weighted linear scoring, weights are user-adjustable
   and logged, not learned. The point is a defensible methodology, not a black box.
@@ -57,9 +57,7 @@ pip install -r requirements.txt
 
 ## Build log
 
-## Build log
-
 - **Day 1**: repo scaffold, PPP ingestion (World Bank API), FX snapshot ingestion
-  (Frankfurter API), tax bracket reference data for IN/JP/DE (sourced, tax-year pinned).
-- **Day 2**: Gross-to-net tax engine for IN/JP/DE, resolved statutory deduction & continuous formula blockers (Germany §32a EStG, Japan NTA tiers), automated unit test suite with pytest.
-- 
+(Frankfurter API), tax bracket reference data for IN/JP/DE/US (sourced, tax-year pinned).
+- **Day 2**: Gross-to-net tax engine for IN/JP/DE/US, resolved statutory deduction & continuous formula
+blockers (Germany §32a EStG, Japan NTA tiers, US Federal + FICA), automated unit test suite with pytest.
