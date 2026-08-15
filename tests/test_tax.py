@@ -32,3 +32,13 @@ def test_germany_zones():
     net = get_net_pay(15000, "DE")
     expected_net = 15000 - 483.48
     assert abs(net - expected_net) < 1.0
+
+def test_us_federal_tax():
+    # $100,000 gross in 2024:
+    # FICA = $6,200 (SS) + $1,450 (Medicare) = $7,650
+    # Taxable = $100,000 - $14,600 = $85,400
+    # Fed Tax = 10% on 11.6k ($1,160) + 12% on (47.15k-11.6k) ($4,266) + 22% on (85.4k-47.15k) ($8,415) = $13,841
+    # Total Tax = $21,491 -> Net = $78,509
+    net = get_net_pay(100000, "US")
+    expected_net = 78509
+    assert abs(net - expected_net) < 1.0

@@ -97,3 +97,31 @@ DE:
       max_taxable: null
       rate: 0.45
       deduction: 18537.69
+
+US:
+  tax_year: 2024
+  currency: USD
+  source_url: "https://taxfoundation.org/data/all/federal/2024-tax-brackets/"
+  retrieved_date: "2026-08-16"
+  standard_deduction: 14600
+  fica:
+    ss_rate: 0.062
+    ss_cap: 168600
+    medicare_rate: 0.0145
+    additional_medicare_rate: 0.009
+    additional_medicare_threshold: 200000
+  brackets:
+    - max_taxable: 11600
+      rate: 0.10
+    - max_taxable: 47150
+      rate: 0.12
+    - max_taxable: 100525
+      rate: 0.22
+    - max_taxable: 191950
+      rate: 0.24
+    - max_taxable: 243725
+      rate: 0.32
+    - max_taxable: 609350
+      rate: 0.35
+    - max_taxable: null
+      rate: 0.37

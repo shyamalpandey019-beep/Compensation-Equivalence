@@ -36,6 +36,9 @@ def fetch_fx(base: str = BASE_CURRENCY, targets: list[str] = TARGET_CURRENCIES) 
 
 def main() -> None:
     payload = fetch_fx()
+    
+    # Inject 1:1 parity for the base currency
+    payload["rates"]["USD"] = 1.0
 
     out = {
         "fetched_at_utc": datetime.now(timezone.utc).isoformat(),

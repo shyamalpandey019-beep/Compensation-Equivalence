@@ -87,6 +87,34 @@ def calculate_de_tax(gross: float, data: dict) -> float:
     z = data["zones"][4]
     return (zve * z["rate"]) - z["deduction"]
 
+def calculate_us_tax(gross: float, data: dict) -> float:
+    # 1. FICA (Calculated on GROSS wages)
+    fica_data = data["fica"]
+    social_security = min(gross, fica_data["ss_cap"]) * fica_data["ss_rate"]
+    medicare = gross * fica_data["medicare_rate"]
+    
+    additional_medicare = 0.0
+    if gross > fica_data["additional_medicare_threshold"]:
+        additional_medicare = (gross - fica_data["additional_medicare_threshold"]) * fica_data["additional_medicare_rate"]
+        
+    total_fica = social_security + medicare + additional_medicare
+
+    # 2. Federal Income Tax (Calculated on TAXABLE income after standard deduction)
+    taxable = max(0.0, gross - data["standard_deduction"])
+    federal_tax = 0.0
+    prev_max = 0.0
+    
+    for bracket in data["brackets"]:
+        cap = bracket["max_taxable"]
+        if cap is None or taxable <= cap:
+            federal_tax += (taxable - prev_max) * bracket["rate"]
+            break
+        else:
+            federal_tax += (cap - prev_max) * bracket["rate"]
+            prev_max = cap
+
+    return federal_tax + total_fica
+
 def get_net_pay(gross: float, country_code: str) -> float:
     country_code = country_code.upper()
     if country_code not in TAX_DATA:
@@ -100,6 +128,8 @@ def get_net_pay(gross: float, country_code: str) -> float:
         tax = calculate_jp_tax(gross, data)
     elif country_code == "DE":
         tax = calculate_de_tax(gross, data)
+    elif country_code == "US":
+        tax = calculate_us_tax(gross, data)
     else:
         raise NotImplementedError()
         
