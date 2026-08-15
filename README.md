@@ -57,5 +57,9 @@ pip install -r requirements.txt
 
 ## Build log
 
+## Build log
+
 - **Day 1**: repo scaffold, PPP ingestion (World Bank API), FX snapshot ingestion
   (Frankfurter API), tax bracket reference data for IN/JP/DE (sourced, tax-year pinned).
+- **Day 2**: Gross-to-net tax engine for IN/JP/DE, resolved statutory deduction & continuous formula blockers (Germany §32a EStG, Japan NTA tiers), automated unit test suite with pytest.
+- 
