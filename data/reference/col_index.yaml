@@ -1,0 +1,31 @@
+# data/reference/col_index.yaml
+base_city: "New York, NY, United States"
+base_index: 100.0
+source_url: "https://www.numbeo.com/cost-of-living/rankings.jsp?title=2024-mid"
+retrieved_date: "2026-08-16"
+
+cities:
+  IN:
+    Bangalore: 25.8
+    Mumbai: 24.3
+    Pune: 24.1
+    Delhi: 23.9
+    Hyderabad: 22.8
+    Ahmedabad: 22.8
+    Chennai: 21.8
+    Kolkata: 21.1
+  US:
+    New York: 100.0
+    San Francisco: 90.5
+    Los Angeles: 80.9
+    Chicago: 80.2
+  DE:
+    Munich: 67.8
+    Hamburg: 67.4
+    Berlin: 64.7
+    Frankfurt: 63.7
+  JP:
+    Tokyo: 51.9
+    Yokohama: 50.1
+    Osaka: 48.5
+    Nagoya: 46.5
