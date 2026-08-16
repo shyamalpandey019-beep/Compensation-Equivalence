@@ -13,7 +13,8 @@ from pathlib import Path
 
 import requests
 
-COUNTRIES = ["IN", "JP", "DE", "US"]  # ISO 2-letter codes: India, Japan, Germany, United StatesINDICATOR = "PA.NUS.PPP"
+COUNTRIES = ["IN", "JP", "DE", "US"]  # ISO 2-letter codes
+INDICATOR = "PA.NUS.PPP"
 BASE_URL = "https://api.worldbank.org/v2/country/{countries}/indicator/{indicator}"
 OUT_PATH = Path(__file__).resolve().parents[2] / "data" / "raw" / "ppp_raw.json"
 

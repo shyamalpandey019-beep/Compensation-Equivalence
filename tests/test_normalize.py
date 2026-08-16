@@ -1,4 +1,5 @@
 # tests/test_normalize.py
+# pyrefly: ignore [missing-import]
 import pytest
 from src.normalize.adjust import calculate_nominal, calculate_ppp, calculate_col_adjusted
 
