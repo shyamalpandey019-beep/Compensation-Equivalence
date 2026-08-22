@@ -1,68 +1,55 @@
-# comp-equivalence-engine
+Compensation Equivalence Engine 🌍
+A progressive algorithmic pipeline that normalizes global technical compensation using statutory tax models, purchasing power parity (PPP), and dynamic market benchmarking.
 
-Cross-country compensation equivalence engine. Given a salary + role + country,
-outputs three **separate** adjusted figures — nominal FX, PPP-adjusted, and
-cost-of-living-adjusted — plus a transparent weighted ranking across countries.
+Live Dashboard: https://comp-engine.streamlit.app
+Live API Docs: https://compensation-equivalence.onrender.com/docs
 
-## Scope
+![alt text](images/streamlit_ui.png)
 
-- **Countries**: India (IN), Japan (JP), Germany (DE), United States (US)
-- **Roles**: data scientist / data engineer, 1 general benchmark tier
-- **No ML model** for scoring — weighted linear scoring, weights are user-adjustable
-  and logged, not learned. The point is a defensible methodology, not a black box.
+💡 The Problem
+Directly comparing international compensation packages using nominal foreign exchange (FX) rates is fundamentally flawed. A $130,000 salary in San Francisco does not provide the same standard of living as €75,000 in Berlin or ₹2,500,000 in Bangalore due to differing statutory tax brackets, mandatory social contributions, and local purchasing power variations.
 
-## Why three separate numbers, not one
+This engine solves this problem by executing a multi-tier data pipeline that calculates statutory take-home pay, normalizes for purchasing power parity (PPP) and cost of living (COL), and benchmarks the result against local tech compensation percentiles.
 
-- **Nominal FX**: literal currency conversion at a snapshot rate. Tells you what
-  the number looks like in another currency, nothing about what it buys.
-- **PPP-adjusted**: World Bank PPP conversion factor. Normalizes for the price of
-  a national basket of goods. Answers "what does this income buy at home."
-- **COL-adjusted**: city-level cost-of-living index (Numbeo baseline). Answers
-  "what does this income buy in this specific city," which PPP does not capture
-  (PPP is national-average, COL indices are city-level).
+✨ Core Features
+Statutory Progressive Taxation: Built-in 2024 tax bracket modeling (Federal, State/Prefecture, Local, and Social Security) for India, the US, Germany, and Japan.
 
-Collapsing these into one blended "adjusted salary" is the single most common
-mistake in DIY versions of this project. This repo keeps them as three labeled
-fields end to end — ingestion through API response.
+Three-Tier Wealth Normalization:
 
-## Repo layout
+Nominal USD: Live FX market conversions.
 
-```
-data/
-  raw/          # unmodified API pulls, timestamped
-  processed/    # cleaned/normalized versions
-  reference/    # pinned, versioned config: tax brackets, PPP factors, COL index
-src/
-  ingest/       # PPP (World Bank), FX (Frankfurter), tax bracket loader
-  tax/          # gross -> net tax calculators per country
-  normalize/    # nominal / PPP / COL adjustment logic
-  scoring/      # weighted ranking model
-  api/          # FastAPI service
-tests/
-```
+PPP Int$: World Bank Purchasing Power Parity scaling.
 
-## Reproducibility rule
+COL-Adjusted: Numbeo Cost of Living city indexing anchored to NYC.
 
-Every output carries the tax year, PPP year, and FX snapshot date it was computed
-with. See `data/reference/SOURCES.md`. No live-only numbers — if a source can't
-be pinned to a dated snapshot, it doesn't go in `reference/`.
+Multi-Role Market Benchmarking: Dynamically scores salaries against verified compensation bands for Software Engineers, Data Scientists, and Data Analysts.
 
-## Setup
+Data Staleness Guard: CI/CD pipeline automatically monitors and alerts the UI if reference FX/PPP snapshots exceed a 30-day freshness threshold.
 
-```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+⚙️ Architecture & Data Flow
+The engine orchestrates data through a strict 4-stage calculation pipeline:
 
-## Build log
+Ingestion: Validates gross salary, country, city, and job role.
 
-- **Day 1**: repo scaffold, PPP ingestion (World Bank API), FX snapshot ingestion
-(Frankfurter API), tax bracket reference data for IN/JP/DE/US (sourced, tax-year pinned).
-- **Day 2**: Gross-to-net tax engine for IN/JP/DE/US, resolved statutory deduction & continuous formula
-blockers (Germany §32a EStG, Japan NTA tiers, US Federal + FICA), automated unit test suite with pytest.
-- **Day 3**: Built normalization layer separating Nominal USD, PPP Int$, and city-level Cost of Living (COL) purchasing power adjustments across 20 benchmark metropolitan hubs (IN, US, DE, JP); verified via automated pytest suite.
-- **Day 4**: Built the `src/pipeline.py` orchestrator to route data across modules. Developed the `src/cli.py` tool using `argparse` for end-to-end terminal execution and reporting across 20 global tech hubs.
-**Day 5**: Implemented an interactive Streamlit web dashboard for real-time visualization of cross-border compensation metrics using Pandas bar charts.
-**Day 5**: Built a weighted 0-100 compensation scoring model and exposed the engine via a FastAPI endpoint.
-- **Day 6**: Validated pipeline outputs against known public sources (ClearTax, SmartAsset) and documented sanity checks in VALIDATION.md.
+Tax Engine: Processes deductions via local statutory tax models to output Net Take-Home Pay.
+
+Normalization: Applies FX rates, World Bank PPP, and City COL factors to output comparable USD Metrics.
+
+Benchmarking: Executes linear interpolation against role market percentiles to output a final 0-100 Equivalence Score.
+
+💻 Developer API
+The backend is fully deployed as a scalable web service. The API returns a comprehensive JSON payload containing the statutory tax breakdown, all normalized conversion vectors, and the final market benchmark score.
+
+![alt text](images/api_swagger.png)
+
+
+⚙️ Technical Stack & Infrastructure :
+Language & Core: Python 3.11, Pandas, Pydantic
+
+Backend API: FastAPI, Uvicorn (Deployed on Render)
+
+Frontend UI: Streamlit (Deployed on Streamlit Community Cloud)
+
+Quality Assurance & CI/CD: Pytest, GitHub Actions (Automated testing on push)
+
+Data Sources: World Bank Development Indicators (PPP), 2024 Statutory Tax Tables, Numbeo Cost of Living Index
