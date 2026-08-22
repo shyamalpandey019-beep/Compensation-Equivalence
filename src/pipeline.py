@@ -31,7 +31,7 @@ def load_raw_data() -> tuple[dict, dict]:
         ppp_data = json.load(f)
     return fx_data, ppp_data
 
-def run_pipeline(gross_salary: float, country_code: str, city_name: str) -> Dict[str, Any]:
+def run_pipeline(gross_salary: float, country_code: str, city_name: str, role: str) -> Dict[str, Any]:
     country_code = country_code.upper()
     fx_data, ppp_data = load_raw_data()
     currency = COUNTRY_CURRENCY_MAP.get(country_code)
@@ -53,7 +53,7 @@ def run_pipeline(gross_salary: float, country_code: str, city_name: str) -> Dict
     col_adjusted_usd = calculate_col_adjusted(nominal_usd, country_code, city_name)
 
     # 4. Market Percentile Benchmark 
-    market_percentile = calculate_percentile(gross_salary, country_code)
+    market_percentile = calculate_percentile(gross_salary, country_code, role)
     
     # 5. Overall Weighted Score 
     comp_score = calculate_score(market_percentile, col_adjusted_usd)
@@ -76,7 +76,7 @@ def run_pipeline(gross_salary: float, country_code: str, city_name: str) -> Dict
             "col_adjusted_usd": round(col_adjusted_usd, 2),
         },
         "benchmark": {
-            "role": "Software Engineer",
+            "role": role,
             "percentile": market_percentile,
             "overall_score_out_of_100": comp_score
         },

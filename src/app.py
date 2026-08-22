@@ -41,6 +41,7 @@ selected_country_code = st.sidebar.selectbox(
 # Dynamically populate cities based on the selected country
 available_cities = list(COL_DATA["cities"][selected_country_code].keys())
 selected_city = st.sidebar.selectbox("City", options=available_cities)
+selected_role = st.sidebar.selectbox("Job Role", ["Software Engineer", "Data Scientist", "Data Analyst"])
 
 # Default starting values based on currency
 default_salary = {
@@ -60,7 +61,7 @@ gross_salary = st.sidebar.number_input(
 # 3. Execution & Display
 if st.sidebar.button("Calculate Equivalence", type="primary"):
     try:
-        results = run_pipeline(gross_salary, selected_country_code, selected_city)
+        results = run_pipeline(gross_salary, selected_country_code, selected_city, selected_role)
         
         inp = results["input"]
         tax = results["tax"]
