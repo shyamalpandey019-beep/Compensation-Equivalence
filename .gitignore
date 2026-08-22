@@ -9,3 +9,18 @@ venv/
 *.db
 data/raw/*.json
 !data/raw/.gitkeep
+# IDE Settings
+.idea/
+.vscode/
+
+# Testing and Coverage
+.coverage
+htmlcov/
+
+# Build Artifacts
+build/
+dist/
+.eggs/
+
+# Windows Caches
+Thumbs.db

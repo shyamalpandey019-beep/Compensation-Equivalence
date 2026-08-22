@@ -1,4 +1,5 @@
 # tests/test_pipeline.py
+# pyrefly: ignore [missing-import]
 import pytest
 from src.pipeline import run_pipeline
 

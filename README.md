@@ -63,3 +63,4 @@ pip install -r requirements.txt
 blockers (Germany §32a EStG, Japan NTA tiers, US Federal + FICA), automated unit test suite with pytest.
 - **Day 3**: Built normalization layer separating Nominal USD, PPP Int$, and city-level Cost of Living (COL) purchasing power adjustments across 20 benchmark metropolitan hubs (IN, US, DE, JP); verified via automated pytest suite.
 - **Day 4**: Built the `src/pipeline.py` orchestrator to route data across modules. Developed the `src/cli.py` tool using `argparse` for end-to-end terminal execution and reporting across 20 global tech hubs.
+**Day 5**: Implemented an interactive Streamlit web dashboard for real-time visualization of cross-border compensation metrics using Pandas bar charts.
