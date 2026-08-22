@@ -55,3 +55,39 @@ Frontend UI: Streamlit (Deployed on Streamlit Community Cloud)
 Quality Assurance & CI/CD: Pytest, GitHub Actions (Automated testing on push)
 
 Data Sources: World Bank Development Indicators (PPP), 2024 Statutory Tax Tables, Numbeo Cost of Living Index
+
+
+🛠️If you want to run or test the engine locally on your machine, follow these steps:
+
+Step 1: Clone the repository
+Bash:
+git clone https://github.com/shyamalpandey019-beep/Compensation-Equivalence.git
+cd Compensation-Equivalence
+
+Step 2: Create and activate a virtual environment
+PowerShell:
+python -m venv venv
+venv\Scripts\activate
+
+On macOS / Linux:
+Bash:
+python3 -m venv venv
+source venv/bin/activate
+
+Step 3: Install dependencies
+Bash:
+pip install -r requirements.txt
+
+Step 4: Run the test suite
+Bash:
+pytest
+
+Step 5: Boot up the applications locally
+To run the Interactive Streamlit Web Dashboard:
+Bash:
+streamlit run src/app.py
+
+To run the FastAPI Developer Backend:
+Bash:
+uvicorn src.api:app --reload
+(Access interactive Swagger API documentation locally at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs))
