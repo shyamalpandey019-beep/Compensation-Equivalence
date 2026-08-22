@@ -31,7 +31,12 @@ def load_raw_data() -> tuple[dict, dict]:
         ppp_data = json.load(f)
     return fx_data, ppp_data
 
-def run_pipeline(gross_salary: float, country_code: str, city_name: str, role: str) -> Dict[str, Any]:
+def run_pipeline(
+    gross_salary: float, 
+    country_code: str, 
+    city_name: str, 
+    role: str = "Software Engineer"
+) -> Dict[str, Any]:
     country_code = country_code.upper()
     fx_data, ppp_data = load_raw_data()
     currency = COUNTRY_CURRENCY_MAP.get(country_code)
