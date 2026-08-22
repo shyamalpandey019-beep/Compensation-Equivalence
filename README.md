@@ -65,3 +65,4 @@ blockers (Germany §32a EStG, Japan NTA tiers, US Federal + FICA), automated uni
 - **Day 4**: Built the `src/pipeline.py` orchestrator to route data across modules. Developed the `src/cli.py` tool using `argparse` for end-to-end terminal execution and reporting across 20 global tech hubs.
 **Day 5**: Implemented an interactive Streamlit web dashboard for real-time visualization of cross-border compensation metrics using Pandas bar charts.
 **Day 5**: Built a weighted 0-100 compensation scoring model and exposed the engine via a FastAPI endpoint.
+- **Day 6**: Validated pipeline outputs against known public sources (ClearTax, SmartAsset) and documented sanity checks in VALIDATION.md.
