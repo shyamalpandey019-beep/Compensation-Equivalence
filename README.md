@@ -5,7 +5,7 @@ Live Dashboard: https://comp-engine.streamlit.app
 
 Live API Docs: https://compensation-equivalence.onrender.com/docs
 
-<img width="1919" height="1030" alt="dashboard" src="https://github.com/user-attachments/assets/b06797e7-e8b5-472d-88ed-18ca65961a7e" />
+<img width="1919" height="879" alt="image" src="https://github.com/user-attachments/assets/a3ad3f2c-1e73-4301-9eb1-571d3a28e5ea" />
 
 
 💡 The Problem
