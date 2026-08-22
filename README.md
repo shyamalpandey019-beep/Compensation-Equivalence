@@ -33,6 +33,7 @@ Data Staleness Guard: CI/CD pipeline automatically monitors and alerts the UI if
 
 
 ⚙️ Architecture & Data Flow
+
 The engine orchestrates data through a strict 4-stage calculation pipeline:
 
 Ingestion: Validates gross salary, country, city, and job role.
@@ -45,6 +46,7 @@ Benchmarking: Executes linear interpolation against role market percentiles to o
 
 
 💻 Developer API
+
 The backend is fully deployed as a scalable web service. The API returns a comprehensive JSON payload containing the statutory tax breakdown, all normalized conversion vectors, and the final market benchmark score.
 
 <img width="1919" height="1026" alt="api" src="https://github.com/user-attachments/assets/f0a65f82-d80e-45a6-8362-27ad371880a9" />
@@ -52,6 +54,7 @@ The backend is fully deployed as a scalable web service. The API returns a compr
 
 
 ⚙️ Technical Stack & Infrastructure :
+
 Language & Core: Python 3.11, Pandas, Pydantic
 
 Backend API: FastAPI, Uvicorn (Deployed on Render)
@@ -68,34 +71,59 @@ Data Sources: World Bank Development Indicators (PPP), 2024 Statutory Tax Tables
 🛠️If you want to run or test the engine locally on your machine, follow these steps:
 
 Step 1: Clone the repository
+
 Bash:
+
 git clone https://github.com/shyamalpandey019-beep/Compensation-Equivalence.git
+
 cd Compensation-Equivalence
 
+
 Step 2: Create and activate a virtual environment
+
 PowerShell:
+
 python -m venv venv
+
 venv\Scripts\activate
 
+
 On macOS / Linux:
+
 Bash:
+
 python3 -m venv venv
+
 source venv/bin/activate
 
+
 Step 3: Install dependencies
+
 Bash:
+
 pip install -r requirements.txt
 
+
 Step 4: Run the test suite
+
 Bash:
+
 pytest
 
+
 Step 5: Boot up the applications locally
+
 To run the Interactive Streamlit Web Dashboard:
+
 Bash:
+
 streamlit run src/app.py
 
+
 To run the FastAPI Developer Backend:
+
 Bash:
+
 uvicorn src.api:app --reload
+
 (Access interactive Swagger API documentation locally at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs))
