@@ -75,6 +75,14 @@ if st.sidebar.button("Calculate Equivalence", type="primary"):
         col1.metric("Gross Salary", f"{inp['gross_salary']:,.2f} {inp['currency']}")
         col2.metric("Net Local Pay", f"{tax['net_local']:,.2f} {inp['currency']}")
         col3.metric("Effective Tax Rate", f"{tax['effective_tax_rate_pct']:.2f}%")
+
+        st.divider()
+        
+        # New Day 7 Cleanup: Add the Score and Percentile!
+        st.subheader("Market Benchmark & Score")
+        scol1, scol2 = st.columns(2)
+        scol1.metric("Local Market Percentile", f"{results['benchmark']['percentile']}th")
+        scol2.metric("Overall Equivalence Score", f"{results['benchmark']['overall_score_out_of_100']} / 100")
         
         st.divider()
         
