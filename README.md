@@ -2,9 +2,11 @@ Compensation Equivalence Engine 🌍
 A progressive algorithmic pipeline that normalizes global technical compensation using statutory tax models, purchasing power parity (PPP), and dynamic market benchmarking.
 
 Live Dashboard: https://comp-engine.streamlit.app
+
 Live API Docs: https://compensation-equivalence.onrender.com/docs
 
-<img src="./dashboard.png" alt="Dashboard Preview" width="800" style="border-radius: 8px;"/>
+<img width="1919" height="1030" alt="dashboard" src="https://github.com/user-attachments/assets/b06797e7-e8b5-472d-88ed-18ca65961a7e" />
+
 
 💡 The Problem
 Directly comparing international compensation packages using nominal foreign exchange (FX) rates is fundamentally flawed. A $130,000 salary in San Francisco does not provide the same standard of living as €75,000 in Berlin or ₹2,500,000 in Bangalore due to differing statutory tax brackets, mandatory social contributions, and local purchasing power variations.
@@ -40,7 +42,7 @@ Benchmarking: Executes linear interpolation against role market percentiles to o
 💻 Developer API
 The backend is fully deployed as a scalable web service. The API returns a comprehensive JSON payload containing the statutory tax breakdown, all normalized conversion vectors, and the final market benchmark score.
 
-![alt text](images/api_swagger.png)
+<img width="1919" height="1026" alt="api" src="https://github.com/user-attachments/assets/f0a65f82-d80e-45a6-8362-27ad371880a9" />
 
 
 ⚙️ Technical Stack & Infrastructure :
