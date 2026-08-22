@@ -4,7 +4,7 @@ A progressive algorithmic pipeline that normalizes global technical compensation
 Live Dashboard: https://comp-engine.streamlit.app
 Live API Docs: https://compensation-equivalence.onrender.com/docs
 
-![alt text](images/streamlit_ui.png)
+<img src="./dashboard.png" alt="Dashboard Preview" width="800" style="border-radius: 8px;"/>
 
 💡 The Problem
 Directly comparing international compensation packages using nominal foreign exchange (FX) rates is fundamentally flawed. A $130,000 salary in San Francisco does not provide the same standard of living as €75,000 in Berlin or ₹2,500,000 in Bangalore due to differing statutory tax brackets, mandatory social contributions, and local purchasing power variations.
