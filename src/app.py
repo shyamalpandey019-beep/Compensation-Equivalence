@@ -124,8 +124,16 @@ if st.sidebar.button("Calculate Equivalence", type="primary"):
         )
         st.bar_chart(chart_data.set_index("Metric"))
         
-        # Metadata Footer
+       # Metadata Footer
         st.caption(f"**Data Provenance** | FX Snapshot: {meta['fx_snapshot_date']} | World Bank PPP Base Year: {meta['ppp_indicator_year']}")
+        
+        # Day 7: Data Staleness Guard
+        from datetime import datetime
+        fx_date = datetime.strptime(meta['fx_snapshot_date'], "%Y-%m-%d")
+        days_old = (datetime.now() - fx_date).days
+        
+        if days_old > 30:
+            st.warning(f"⚠️ **Data Staleness Warning:** The Foreign Exchange (FX) data used for this calculation is {days_old} days old. Real-world equivalent values may have fluctuated.")
         
     except Exception as e:
         st.error(f"Error executing calculation: {e}")
