@@ -1,4 +1,5 @@
 Compensation Equivalence Engine 🌍
+
 A progressive algorithmic pipeline that normalizes global technical compensation using statutory tax models, purchasing power parity (PPP), and dynamic market benchmarking.
 
 Live Dashboard: https://comp-engine.streamlit.app
@@ -9,11 +10,13 @@ Live API Docs: https://compensation-equivalence.onrender.com/docs
 
 
 💡 The Problem
+
 Directly comparing international compensation packages using nominal foreign exchange (FX) rates is fundamentally flawed. A $130,000 salary in San Francisco does not provide the same standard of living as €75,000 in Berlin or ₹2,500,000 in Bangalore due to differing statutory tax brackets, mandatory social contributions, and local purchasing power variations.
 
 This engine solves this problem by executing a multi-tier data pipeline that calculates statutory take-home pay, normalizes for purchasing power parity (PPP) and cost of living (COL), and benchmarks the result against local tech compensation percentiles.
 
 ✨ Core Features
+
 Statutory Progressive Taxation: Built-in 2024 tax bracket modeling (Federal, State/Prefecture, Local, and Social Security) for India, the US, Germany, and Japan.
 
 Three-Tier Wealth Normalization:
@@ -28,6 +31,7 @@ Multi-Role Market Benchmarking: Dynamically scores salaries against verified com
 
 Data Staleness Guard: CI/CD pipeline automatically monitors and alerts the UI if reference FX/PPP snapshots exceed a 30-day freshness threshold.
 
+
 ⚙️ Architecture & Data Flow
 The engine orchestrates data through a strict 4-stage calculation pipeline:
 
@@ -39,10 +43,12 @@ Normalization: Applies FX rates, World Bank PPP, and City COL factors to output 
 
 Benchmarking: Executes linear interpolation against role market percentiles to output a final 0-100 Equivalence Score.
 
+
 💻 Developer API
 The backend is fully deployed as a scalable web service. The API returns a comprehensive JSON payload containing the statutory tax breakdown, all normalized conversion vectors, and the final market benchmark score.
 
 <img width="1919" height="1026" alt="api" src="https://github.com/user-attachments/assets/f0a65f82-d80e-45a6-8362-27ad371880a9" />
+
 
 
 ⚙️ Technical Stack & Infrastructure :
@@ -55,6 +61,8 @@ Frontend UI: Streamlit (Deployed on Streamlit Community Cloud)
 Quality Assurance & CI/CD: Pytest, GitHub Actions (Automated testing on push)
 
 Data Sources: World Bank Development Indicators (PPP), 2024 Statutory Tax Tables, Numbeo Cost of Living Index
+
+
 
 
 🛠️If you want to run or test the engine locally on your machine, follow these steps:
