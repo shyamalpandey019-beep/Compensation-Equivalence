@@ -1,0 +1,201 @@
+{
+  "fetched_at_utc": "2026-08-16T10:36:30.941669+00:00",
+  "indicator": "PA.NUS.PPP",
+  "source": "World Bank API",
+  "all_records": [
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2024,
+      "value": 0.700862
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2023,
+      "value": 0.701054
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2022,
+      "value": 0.688423
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2021,
+      "value": 0.706697
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2020,
+      "value": 0.706836
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2019,
+      "value": 0.717745
+    },
+    {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2018,
+      "value": 0.735448
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2024,
+      "value": 20.4522424138694
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2023,
+      "value": 20.4553387219722
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2022,
+      "value": 20.4927049140107
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2021,
+      "value": 20.7278957366943
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2020,
+      "value": 20.3193664550781
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2019,
+      "value": 20.2395000457764
+    },
+    {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2018,
+      "value": 20.4745960235596
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2024,
+      "value": 94.462599
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2023,
+      "value": 93.831737
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2022,
+      "value": 94.922107
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2021,
+      "value": 99.211289
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2020,
+      "value": 100.742048
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2019,
+      "value": 103.231509
+    },
+    {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2018,
+      "value": 104.158636
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2024,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2023,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2022,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2021,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2020,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2019,
+      "value": 1
+    },
+    {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2018,
+      "value": 1
+    }
+  ],
+  "latest_per_country": {
+    "DEU": {
+      "country": "Germany",
+      "country_code": "DEU",
+      "year": 2024,
+      "value": 0.700862
+    },
+    "IND": {
+      "country": "India",
+      "country_code": "IND",
+      "year": 2024,
+      "value": 20.4522424138694
+    },
+    "JPN": {
+      "country": "Japan",
+      "country_code": "JPN",
+      "year": 2024,
+      "value": 94.462599
+    },
+    "USA": {
+      "country": "United States",
+      "country_code": "USA",
+      "year": 2024,
+      "value": 1
+    }
+  }
+}

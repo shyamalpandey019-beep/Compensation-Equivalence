@@ -7,8 +7,6 @@ venv/
 .env
 .DS_Store
 *.db
-data/raw/*.json
-!data/raw/.gitkeep
 # IDE Settings
 .idea/
 .vscode/
