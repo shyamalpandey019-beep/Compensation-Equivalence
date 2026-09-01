@@ -134,3 +134,105 @@ def get_net_pay(gross: float, country_code: str) -> float:
         raise NotImplementedError()
         
     return gross - tax
+
+def get_tax_breakdown(gross: float, country_code: str) -> dict:
+    country_code = country_code.upper()
+    if country_code not in TAX_DATA:
+        raise ValueError(f"No tax data for {country_code}")
+        
+    data = TAX_DATA[country_code]
+    currency = data.get("currency", "USD")
+    items = []
+    
+    if country_code == "IN":
+        std_ded = data["standard_deduction"]
+        taxable = max(0, gross - std_ded)
+        items.append({"label": "Standard Deduction", "amount": std_ded, "type": "deduction", "note": "Statutory relief"})
+        
+        if taxable <= 700000:
+            raw_tax = 0.0
+            cess = 0.0
+            items.append({"label": "Income Tax (Sec 87A Rebate)", "amount": 0.0, "type": "tax", "note": "100% rebate under ₹7L taxable"})
+        else:
+            raw_tax = 0.0
+            prev_max = 0.0
+            for bracket in data["brackets"]:
+                cap = bracket["max_taxable"]
+                if cap is None or taxable <= cap:
+                    raw_tax += (taxable - prev_max) * bracket["rate"]
+                    break
+                else:
+                    raw_tax += (cap - prev_max) * bracket["rate"]
+                    prev_max = cap
+            cess = raw_tax * 0.04
+            items.append({"label": "Income Tax (Slabs)", "amount": raw_tax, "type": "tax", "note": "New Regime progressive slabs"})
+            items.append({"label": "Health & Education Cess (4%)", "amount": cess, "type": "tax", "note": "4% on income tax"})
+        total_tax = raw_tax + cess
+        
+    elif country_code == "US":
+        std_ded = data["standard_deduction"]
+        taxable = max(0.0, gross - std_ded)
+        items.append({"label": "Standard Deduction", "amount": std_ded, "type": "deduction", "note": "Single filer baseline"})
+        
+        fica_data = data["fica"]
+        ss_tax = min(gross, fica_data["ss_cap"]) * fica_data["ss_rate"]
+        med_tax = gross * fica_data["medicare_rate"]
+        addl_med = (gross - fica_data["additional_medicare_threshold"]) * fica_data["additional_medicare_rate"] if gross > fica_data["additional_medicare_threshold"] else 0.0
+        
+        fed_tax = 0.0
+        prev_max = 0.0
+        for bracket in data["brackets"]:
+            cap = bracket["max_taxable"]
+            if cap is None or taxable <= cap:
+                fed_tax += (taxable - prev_max) * bracket["rate"]
+                break
+            else:
+                fed_tax += (cap - prev_max) * bracket["rate"]
+                prev_max = cap
+                
+        items.append({"label": "Federal Income Tax", "amount": fed_tax, "type": "tax", "note": "Progressive 7-bracket model"})
+        items.append({"label": "FICA Social Security (6.2%)", "amount": ss_tax, "type": "tax", "note": f"Capped at ${fica_data['ss_cap']:,}"})
+        items.append({"label": "FICA Medicare (1.45%)", "amount": med_tax + addl_med, "type": "tax", "note": "Hospital insurance" + (" + 0.9% high income" if addl_med > 0 else "")})
+        total_tax = fed_tax + ss_tax + med_tax + addl_med
+        
+    elif country_code == "DE":
+        total_tax = calculate_de_tax(gross, data)
+        items.append({"label": "Progressive Income Tax (ESt)", "amount": total_tax, "type": "tax", "note": "Tarif 2024 (Zones 1-5 formula)"})
+        
+    elif country_code == "JP":
+        emp_deduction = 0.0
+        for tier in data["employment_income_deduction"]:
+            if tier["max_gross"] is None or gross <= tier["max_gross"]:
+                emp_deduction = gross * tier["multiplier"] + tier["base"]
+                break
+        basic_ded = data["basic_deduction"]
+        items.append({"label": "Employment Income Deduction", "amount": emp_deduction, "type": "deduction", "note": "Salaried earner deduction"})
+        items.append({"label": "Basic Deduction", "amount": basic_ded, "type": "deduction", "note": "Standard personal exemption"})
+        
+        taxable = max(0, gross - emp_deduction - basic_ded)
+        taxable = math.floor(taxable / 1000) * 1000
+        
+        if taxable <= 0:
+            nat_tax = 0.0
+            recon_tax = 0.0
+        else:
+            nat_tax = 0.0
+            for bracket in data["brackets"]:
+                if bracket["max_taxable"] is None or taxable <= bracket["max_taxable"]:
+                    nat_tax = (taxable * bracket["rate"]) - bracket["deduction"]
+                    break
+            recon_tax = nat_tax * 0.021
+            
+        items.append({"label": "National Income Tax", "amount": nat_tax, "type": "tax", "note": "National progressive brackets"})
+        items.append({"label": "Special Reconstruction Tax (2.1%)", "amount": recon_tax, "type": "tax", "note": "2.1% on income tax"})
+        total_tax = nat_tax + recon_tax
+        
+    net_pay = gross - total_tax
+    return {
+        "gross": gross,
+        "currency": currency,
+        "total_tax": round(total_tax, 2),
+        "net_pay": round(net_pay, 2),
+        "effective_rate_pct": round((total_tax / gross) * 100, 2) if gross > 0 else 0.0,
+        "items": items
+    }
