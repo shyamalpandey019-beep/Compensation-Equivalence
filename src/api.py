@@ -23,7 +23,7 @@ from src.benchmark import BENCHMARK_FILE
 import json
 
 app = FastAPI(
-    title="EquivPay Global Compensation Normalization Engine API",
+    title="Comp Engine Global Compensation Normalization Engine API",
     description="Statutory Tax Modeling, PPP Normalization, Cost-of-Living Indexing, and Market Banding REST API.",
     version="1.1.0"
 )
@@ -39,7 +39,7 @@ class SalaryRequest(BaseModel):
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "service": "equivpay-engine", "version": "1.1.0"}
+    return {"status": "ok", "service": "comp-engine", "version": "1.1.0"}
 
 
 @app.get("/api/v1/metadata")

@@ -13,7 +13,7 @@ from src.pipeline import run_pipeline, calculate_parity_matrix
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="EquivPay CLI: Global Compensation Normalization, Statutory Tax, and Cross-Border Parity Engine."
+        description="Comp Engine CLI: Global Compensation Normalization, Statutory Tax, and Cross-Border Parity Engine."
     )
     parser.add_argument(
         "--gross",
@@ -78,7 +78,7 @@ def main() -> None:
     meta = results["metadata"]
 
     print("\n" + "=" * 68)
-    print("           EQUIVPAY - GLOBAL COMPENSATION EQUIVALENCE REPORT        ")
+    print("           COMP ENGINE - GLOBAL COMPENSATION EQUIVALENCE REPORT        ")
     print("=" * 68)
     print(f"Position:     {bench['role']} in {inp['city']}, {inp['country']}")
     print(f"Gross Salary: {inp['gross_salary']:,.2f} {inp['currency']} / year")

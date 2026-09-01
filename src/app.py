@@ -17,7 +17,7 @@ from src.benchmark import BENCHMARK_FILE
 
 # 1. Page Configuration
 st.set_page_config(
-    page_title="EquivPay — Global Compensation Normalization Engine",
+    page_title="Comp Engine — Global Compensation Normalization Engine",
     page_icon="🌍",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -57,7 +57,7 @@ html_content = f"""<!DOCTYPE html>
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>EquivPay — Global Compensation Normalization</title>
+    <title>Comp Engine — Global Compensation Normalization</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
     tailwind.config = {{
@@ -155,7 +155,7 @@ html_content = f"""<!DOCTYPE html>
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('landing')">
                 <div class="flex items-center gap-1.5 text-primary">
                     <span class="material-symbols-outlined text-[26px]">public</span>
-                    <span class="font-heading text-2xl font-bold tracking-tighter text-[#006194]">EquivPay</span>
+                    <span class="font-heading text-2xl font-bold tracking-tighter text-[#006194]">Comp Engine</span>
                 </div>
                 <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-geist text-xs font-semibold tracking-wider">v1.0 Live</span>
             </div>
@@ -178,7 +178,7 @@ html_content = f"""<!DOCTYPE html>
     </header>
 
     <!-- ======================================================================= -->
-    <!-- VIEW 1: LANDING PAGE (Screen 3: EquivPay - Global Normalization)        -->
+    <!-- VIEW 1: LANDING PAGE (Screen 3: Comp Engine - Global Normalization)     -->
     <!-- ======================================================================= -->
     <main id="view-landing" class="w-full flex-grow">
         <!-- Interactive Hero Background -->
@@ -826,7 +826,7 @@ html_content = f"""<!DOCTYPE html>
     <!-- FOOTER (Clean Stitch Design) -->
     <footer class="w-full bg-surface-container-low border-t border-outline-variant/30 py-8 mt-12">
         <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-xs">
-            <div>© 2024 EquivPay. Engineering Global Compensation Equity.</div>
+            <div>© 2024 Comp Engine. Engineering Global Compensation Equity.</div>
             <nav class="flex gap-6 font-medium">
                 <button onclick="switchView('landing')" class="hover:text-on-surface transition-colors">Product Overview</button>
                 <button onclick="switchView('calculator')" class="hover:text-on-surface transition-colors">Analysis Dashboard</button>
@@ -1310,12 +1310,12 @@ html_content = f"""<!DOCTYPE html>
         const taxRes = calculateNetPay(gross, country);
         const curr = CURR_MAP[country];
 
-        const text = `📊 **EquivPay Global Compensation Brief**
+        const text = `📊 **Comp Engine Global Compensation Brief**
 - Role: ${{role}} (${{city}}, ${{country}})
 - Gross Salary: ${{formatNumber(gross, country)}} (${{curr}})
 - Net Take-Home: ${{formatNumber(taxRes.net, country)}} / year (${{formatNumber(taxRes.net / 12, country)}}/mo)
 - Effective Statutory Tax: ${{taxRes.rate.toFixed(1)}}%
-- Generated via EquivPay Normalization Engine`;
+- Generated via Comp Engine Normalization Engine`;
 
         navigator.clipboard.writeText(text).then(() => {{
             showToast('✓ Copied Comp Brief to clipboard!');

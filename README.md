@@ -1,4 +1,4 @@
-# EquivPay — Global Compensation Normalization Engine 🌍
+# Comp Engine — Global Compensation Normalization Engine 🌍
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-1.1.0-009688.svg)](https://fastapi.tiangolo.com/)
@@ -11,7 +11,7 @@ A high-fidelity cross-border compensation normalization engine that translates t
 **Live Dashboard**: [https://comp-engine.streamlit.app](https://comp-engine.streamlit.app)  
 **Live API Docs**: [https://compensation-equivalence.onrender.com/docs](https://compensation-equivalence.onrender.com/docs)
 
-![EquivPay Analysis Dashboard](dashboard.png)
+![Comp Engine Analysis Dashboard](dashboard.png)
 
 ---
 
@@ -19,7 +19,7 @@ A high-fidelity cross-border compensation normalization engine that translates t
 
 Directly comparing international compensation offers using spot foreign exchange (FX) rates is fundamentally flawed. A **$140,000** salary in San Francisco does not provide the same standard of living as **€85,000** in Berlin, **¥11,000,000** in Tokyo, or **₹3,500,000** in Bangalore due to differing statutory tax schedules, mandatory social security contributions, and local purchasing power variations.
 
-**EquivPay** solves this through a four-stage normalization pipeline that calculates statutory net take-home pay, adjusts for purchasing power parity (PPP) and metro cost of living (COL), and benchmarks the result against local tech percentiles.
+**Comp Engine** solves this through a four-stage normalization pipeline that calculates statutory net take-home pay, adjusts for purchasing power parity (PPP) and metro cost of living (COL), and benchmarks the result against local tech percentiles.
 
 ---
 

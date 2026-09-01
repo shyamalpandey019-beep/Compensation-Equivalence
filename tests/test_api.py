@@ -10,7 +10,7 @@ def test_api_health():
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "ok"
-    assert data["service"] == "equivpay-engine"
+    assert data["service"] == "comp-engine"
 
 def test_api_metadata():
     response = client.get("/api/v1/metadata")
