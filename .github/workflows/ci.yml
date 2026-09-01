@@ -22,10 +22,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install fastapi uvicorn streamlit pandas pytest requests pydantic PyYAML
+        pip install fastapi uvicorn streamlit pandas pytest requests pydantic PyYAML httpx
         
     - name: Run test suite
       env:
         PYTHONPATH: .
       run: |
-        pytest
+        pytest -v
