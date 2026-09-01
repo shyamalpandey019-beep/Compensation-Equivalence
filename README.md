@@ -11,7 +11,7 @@ A high-fidelity cross-border compensation normalization engine that translates t
 **Live Dashboard**: [https://comp-engine.streamlit.app](https://comp-engine.streamlit.app)  
 **Live API Docs**: [https://compensation-equivalence.onrender.com/docs](https://compensation-equivalence.onrender.com/docs)
 
-![Comp Engine Analysis Dashboard](dashboard.png)
+![Comp Engine Analysis Dashboard](docs/images/dashboard.png)
 
 ---
 
